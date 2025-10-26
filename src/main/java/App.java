@@ -9,19 +9,12 @@ public class App {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("\n╔════════════════════════════════════════╗");
-        System.out.println("║     CHƯƠNG TRÌNH TÍNH TOÁN 2 SỐ       ║");
-        System.out.println("╚════════════════════════════════════════╝");
-        System.out.println();
         System.out.println("Vui lòng chọn chức năng:");
         System.out.println("  1. Nhân 2 số");
         System.out.println("  2. Cộng 2 số");
         System.out.println("  3. Trừ 2 số");
         System.out.println("  4. Chia 2 số");
         System.out.println("  0. Thoát chương trình");
-        System.out.println();
-        System.out.println("  (*) Mỗi chức năng có tùy chọn kiểm tra chẵn lẻ");
-        System.out.println();
         System.out.print("Nhập lựa chọn của bạn: ");
         
         try {
