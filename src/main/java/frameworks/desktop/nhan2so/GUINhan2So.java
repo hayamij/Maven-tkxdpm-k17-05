@@ -28,12 +28,12 @@ public class GUINhan2So extends JFrame {
 		add(tf1); //dòng 1 cột 2
 		
 		JLabel lbl2 = new JLabel("Number 2:");
-		add(lbl2); //dòng 1 cột1
+		add(lbl2); //dòng 2 cột1
 		JTextField tf2 = new JTextField(20);
-		add(tf2); //dòng 1 cột 2
+		add(tf2); //dòng 2 cột 2
 		
 		JLabel lbl3 = new JLabel("");
-		add(lbl3); //dòng 1 cột1
+		add(lbl3); //dòng 3 cột1
 		JButton btX = new JButton("X");
 		btX.addActionListener(
 			new ActionListener() {
@@ -60,7 +60,7 @@ public class GUINhan2So extends JFrame {
 				}
 			}
 		);
-		add(btX); //dòng 1 cột 2
+		add(btX); //dòng 3 cột 2
 		
 		pack(); //gói gọn
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

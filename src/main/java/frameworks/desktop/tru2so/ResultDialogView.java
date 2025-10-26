@@ -1,13 +1,18 @@
 package frameworks.desktop.tru2so;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
 import interfaceadapters.tru2so.Tru2SoViewModel;
+import entities.chanle.KiemTraChanLe;
+import usecases.chanle.InputData;
+import usecases.chanle.KiemTraChanLeUseCaseControl;
+import usecases.chanle.OutputDataChanLe;
+import usecases.chanle.OutputInterfaceChanLe;
 import frameworks.desktop.Subscriber;
 
 public class ResultDialogView implements Subscriber {
 	private Tru2SoViewModel model;
-	
 	
 	public void setModel(Tru2SoViewModel model) {
 		this.model = model;
@@ -17,11 +22,58 @@ public class ResultDialogView implements Subscriber {
 	
 	@Override
 	public void update() {
-		
-		JOptionPane.
-		showInternalMessageDialog(null, 
-				"Result: " +model.result);
-		
+		try {
+			int result = Integer.parseInt(model.result);
+			
+			// Tạo một presenter inline để nhận kết quả từ UseCase
+			final OutputDataChanLe[] outputHolder = new OutputDataChanLe[1];
+			OutputInterfaceChanLe presenter = new OutputInterfaceChanLe() {
+				@Override
+				public void present(OutputDataChanLe outData) {
+					outputHolder[0] = outData;
+				}
+			};
+			
+			// Sử dụng UseCase Control thay vì gọi trực tiếp Entity
+			KiemTraChanLe ktcl = new KiemTraChanLe();
+			KiemTraChanLeUseCaseControl uc = new KiemTraChanLeUseCaseControl(presenter, ktcl);
+			InputData inData = new InputData(result);
+			uc.execute(inData);
+			
+			boolean laChan = outputHolder[0].laChan;
+			
+			// Tạo panel với màu nền tùy theo chẵn lẻ
+			JPanel panel = new JPanel();
+			panel.setLayout(new BorderLayout(10, 10));
+			
+			// Màu đỏ nếu chẵn, xanh lá nếu lẻ
+			Color backgroundColor = laChan ? new Color(255, 200, 200) : new Color(200, 255, 200);
+			panel.setBackground(backgroundColor);
+			panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+			
+			// Label kết quả
+			JLabel resultLabel = new JLabel("Kết quả: " + result, SwingConstants.CENTER);
+			resultLabel.setFont(new Font("Arial", Font.BOLD, 20));
+			resultLabel.setOpaque(true);
+			resultLabel.setBackground(backgroundColor);
+			
+			// Label chẵn/lẻ
+			String chanLeText = laChan ? "CHẴN" : "LẺ";
+			JLabel chanLeLabel = new JLabel(chanLeText, SwingConstants.CENTER);
+			chanLeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+			chanLeLabel.setForeground(laChan ? Color.RED : new Color(0, 150, 0));
+			chanLeLabel.setOpaque(true);
+			chanLeLabel.setBackground(backgroundColor);
+			
+			panel.add(resultLabel, BorderLayout.CENTER);
+			panel.add(chanLeLabel, BorderLayout.SOUTH);
+			
+			JOptionPane.showMessageDialog(null, panel, 
+				"Kết quả Trừ 2 số", JOptionPane.PLAIN_MESSAGE);
+				
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, 
+				"Result: " + model.result);
+		}
 	}
-
 }
