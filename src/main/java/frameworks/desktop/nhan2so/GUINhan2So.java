@@ -67,8 +67,4 @@ public class GUINhan2So extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
-	public static void main(String[] args) {
-		new GUINhan2So();
-	}
 }

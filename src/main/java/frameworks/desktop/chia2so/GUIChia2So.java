@@ -1,4 +1,4 @@
-package frameworks.desktop.cong2so;
+package frameworks.desktop.chia2so;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,16 +9,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import interfaceadapters.cong2so.InputDTO;
-import interfaceadapters.cong2so.Cong2SoController;
-import interfaceadapters.cong2so.Cong2SoPresenter;
-import interfaceadapters.cong2so.Cong2SoViewModel;
-import entities.cong2so.Cong2So;
-import usecases.cong2so.Cong2SoUseCaseControl;
+import interfaceadapters.chia2so.InputDTO;
+import interfaceadapters.chia2so.Chia2SoController;
+import interfaceadapters.chia2so.Chia2SoPresenter;
+import interfaceadapters.chia2so.Chia2SoViewModel;
+import entities.chia2so.Chia2So;
+import usecases.chia2so.Chia2SoUseCaseControl;
 
-public class GUICong2So extends JFrame {
+public class GUIChia2So extends JFrame {
 	
-	public GUICong2So() {
+	public GUIChia2So() {
 		GridLayout grid = new GridLayout(3, 2);
 		setLayout(grid);
 		
@@ -34,8 +34,8 @@ public class GUICong2So extends JFrame {
 		
 		JLabel lbl3 = new JLabel("");
 		add(lbl3); //dòng 3 cột1
-		JButton btCong = new JButton("+");
-		btCong.addActionListener(
+		JButton btChia = new JButton("/");
+		btChia.addActionListener(
 			new ActionListener() {
 				
 				@Override
@@ -44,23 +44,23 @@ public class GUICong2So extends JFrame {
 					ResultDialogView view = new ResultDialogView();
 					inDTO.num1 = tf1.getText();
 					inDTO.num2 = tf2.getText();
-					Cong2So c2so = new Cong2So();
-					Cong2SoViewModel model = new Cong2SoViewModel();
+					Chia2So c2so = new Chia2So();
+					Chia2SoViewModel model = new Chia2SoViewModel();
 					//đăng ký view với model
 					view.setModel(model);
-					Cong2SoPresenter presenter = new Cong2SoPresenter(model);
-					Cong2SoUseCaseControl uc = new 
-							Cong2SoUseCaseControl(presenter, c2so);
+					Chia2SoPresenter presenter = new Chia2SoPresenter(model);
+					Chia2SoUseCaseControl uc = new 
+							Chia2SoUseCaseControl(presenter, c2so);
 					
-					Cong2SoController controller =
-							new Cong2SoController(uc);
+					Chia2SoController controller =
+							new Chia2SoController(uc);
 					controller.execute(inDTO);
 					
 					model.notifySubscribers(); //la làng tao có dữ liệu nè
 				}
 			}
 		);
-		add(btCong); //dòng 3 cột 2
+		add(btChia); //dòng 3 cột 2
 		
 		pack(); //gói gọn
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
