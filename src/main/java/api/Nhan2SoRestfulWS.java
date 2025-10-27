@@ -1,7 +1,5 @@
 package api;
 
-import entities.chanle.KiemTraChanLe;
-import entities.nhan2so.Nhan2So;
 import interfaceadapters.nhan2so.Nhan2SoPresenterAPI;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -45,12 +43,10 @@ public class Nhan2SoRestfulWS {
 		// Create request-scoped ViewModel + Presenter
 		Nhan2soResponse responseModel = new Nhan2soResponse();
 		Nhan2SoPresenterAPI presenter = new Nhan2SoPresenterAPI(responseModel);
-		KiemTraChanLe ktcl = new KiemTraChanLe();
 
-		Nhan2So nhan2so = new Nhan2So();
 		// Call use case
 		InputData input = new InputData(body.num1, body.num2);
-		InputInterface in = new Nhan2SoUseCaseControl(presenter, nhan2so, ktcl);
+		InputInterface in = new Nhan2SoUseCaseControl(presenter);
 		in.execute(input);
 
 		// Return responseModel as JSON (200 OK)

@@ -12,8 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import usecases.nhan2so.InputData;
 import usecases.nhan2so.InputInterface;
-import entities.nhan2so.Nhan2So;
-import entities.chanle.KiemTraChanLe;
 import usecases.nhan2so.Nhan2SoUseCaseControl;
 
 @WebServlet("/nhan2so")
@@ -30,14 +28,12 @@ public class Nhan2SoControllerServlet extends HttpServlet{
 		InputData inData = new InputData(Integer.parseInt(inDTO.num1),
 				Integer.parseInt(inDTO.num2));
 		
-		Nhan2So n2so = new Nhan2So();
-		KiemTraChanLe ktcl = new KiemTraChanLe();
 		Nhan2SoViewModel model = new Nhan2SoViewModel();
 		//đăng ký view với model
 		//view.setModel(model);
 		Nhan2SoPresenter presenter = new Nhan2SoPresenter(model);
 		InputInterface inBoundary  = new 
-				Nhan2SoUseCaseControl(presenter, n2so, ktcl);
+				Nhan2SoUseCaseControl(presenter);
 		
 		inBoundary.execute(inData);
 		

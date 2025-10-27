@@ -13,8 +13,6 @@ import interfaceadapters.tru2so.InputDTO;
 import interfaceadapters.tru2so.Tru2SoController;
 import interfaceadapters.tru2so.Tru2SoPresenter;
 import interfaceadapters.tru2so.Tru2SoViewModel;
-import entities.tru2so.Tru2So;
-import entities.chanle.KiemTraChanLe;
 import usecases.tru2so.Tru2SoUseCaseControl;
 
 public class GUITru2So extends JFrame {
@@ -45,14 +43,12 @@ public class GUITru2So extends JFrame {
 					ResultDialogView view = new ResultDialogView();
 					inDTO.num1 = tf1.getText();
 					inDTO.num2 = tf2.getText();
-					Tru2So t2so = new Tru2So();
-					KiemTraChanLe ktcl = new KiemTraChanLe();
 					Tru2SoViewModel model = new Tru2SoViewModel();
 					//đăng ký view với model
 					view.setModel(model);
 					Tru2SoPresenter presenter = new Tru2SoPresenter(model);
 					Tru2SoUseCaseControl uc = new 
-							Tru2SoUseCaseControl(presenter, t2so, ktcl);
+							Tru2SoUseCaseControl(presenter);
 					
 					Tru2SoController controller =
 							new Tru2SoController(uc);

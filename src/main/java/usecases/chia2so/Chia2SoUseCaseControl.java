@@ -5,25 +5,20 @@ import entities.chanle.KiemTraChanLe;
 
 public class Chia2SoUseCaseControl implements InputInterface {
 	private OutputInterface out;
-	private Chia2So c2so;
-	private KiemTraChanLe ktcl;
 	private OutputData outData;
 	
 	public OutputData getOutData() {
 		return outData;
 	}
 
-	public Chia2SoUseCaseControl(OutputInterface out, Chia2So c2so, KiemTraChanLe ktcl) {
+	public Chia2SoUseCaseControl(OutputInterface out) {
 		this.out = out;
-		this.c2so = c2so;
-		this.ktcl = ktcl;
 	}
 	
 	public void execute(InputData inData) {
-		c2so.setNumber1(inData.num1);
-		c2so.setNumber2(inData.num2);
-		
+		Chia2So c2so = new Chia2So(inData.num1, inData.num2);
 		outData = new OutputData();
+		KiemTraChanLe ktcl = new KiemTraChanLe();
 		try {
 			double result = c2so.chia2So();
 			outData.result = result;
