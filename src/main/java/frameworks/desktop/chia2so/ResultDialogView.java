@@ -4,11 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import interfaceadapters.chia2so.Chia2SoViewModel;
-import entities.chanle.KiemTraChanLe;
-import usecases.chanle.InputData;
-import usecases.chanle.KiemTraChanLeUseCaseControl;
-import usecases.chanle.OutputDataChanLe;
-import usecases.chanle.OutputInterfaceChanLe;
 import frameworks.desktop.Subscriber;
 
 public class ResultDialogView implements Subscriber {
@@ -35,22 +30,7 @@ public class ResultDialogView implements Subscriber {
 				
 				// Chỉ kiểm tra chẵn lẻ nếu kết quả là số nguyên
 				if (resultDouble == resultInt) {
-					// Tạo một presenter inline để nhận kết quả từ UseCase
-					final OutputDataChanLe[] outputHolder = new OutputDataChanLe[1];
-					OutputInterfaceChanLe presenter = new OutputInterfaceChanLe() {
-						@Override
-						public void present(OutputDataChanLe outData) {
-							outputHolder[0] = outData;
-						}
-					};
-					
-					// Sử dụng UseCase Control thay vì gọi trực tiếp Entity
-					KiemTraChanLe ktcl = new KiemTraChanLe();
-					KiemTraChanLeUseCaseControl uc = new KiemTraChanLeUseCaseControl(presenter, ktcl);
-					InputData inData = new InputData(resultInt);
-					uc.execute(inData);
-					
-					boolean laChan = outputHolder[0].laChan;
+					boolean laChan = model.laChan;
 					
 					// Tạo panel với màu nền tùy theo chẵn lẻ
 					JPanel panel = new JPanel();

@@ -22,9 +22,11 @@ public class Chia2SoPresenter implements OutputInterface {
 		if (outData.errorMessage != null) {
 			model.result = outData.errorMessage;
 			model.hasError = true;
+			model.laChan = false;
 		} else {
 			model.result = String.valueOf(outData.result);
 			model.hasError = false;
+			model.laChan = outData.laChan;
 		}
 	}
 }

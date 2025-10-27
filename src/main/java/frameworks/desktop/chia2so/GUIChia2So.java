@@ -14,6 +14,7 @@ import interfaceadapters.chia2so.Chia2SoController;
 import interfaceadapters.chia2so.Chia2SoPresenter;
 import interfaceadapters.chia2so.Chia2SoViewModel;
 import entities.chia2so.Chia2So;
+import entities.chanle.KiemTraChanLe;
 import usecases.chia2so.Chia2SoUseCaseControl;
 
 public class GUIChia2So extends JFrame {
@@ -45,12 +46,13 @@ public class GUIChia2So extends JFrame {
 					inDTO.num1 = tf1.getText();
 					inDTO.num2 = tf2.getText();
 					Chia2So c2so = new Chia2So();
+					KiemTraChanLe ktcl = new KiemTraChanLe();
 					Chia2SoViewModel model = new Chia2SoViewModel();
 					//đăng ký view với model
 					view.setModel(model);
 					Chia2SoPresenter presenter = new Chia2SoPresenter(model);
 					Chia2SoUseCaseControl uc = new 
-							Chia2SoUseCaseControl(presenter, c2so);
+							Chia2SoUseCaseControl(presenter, c2so, ktcl);
 					
 					Chia2SoController controller =
 							new Chia2SoController(uc);

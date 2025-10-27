@@ -1,19 +1,22 @@
 package usecases.chia2so;
 
 import entities.chia2so.Chia2So;
+import entities.chanle.KiemTraChanLe;
 
 public class Chia2SoUseCaseControl implements InputInterface {
 	private OutputInterface out;
 	private Chia2So c2so;
+	private KiemTraChanLe ktcl;
 	private OutputData outData;
 	
 	public OutputData getOutData() {
 		return outData;
 	}
 
-	public Chia2SoUseCaseControl(OutputInterface out, Chia2So c2so) {
+	public Chia2SoUseCaseControl(OutputInterface out, Chia2So c2so, KiemTraChanLe ktcl) {
 		this.out = out;
 		this.c2so = c2so;
+		this.ktcl = ktcl;
 	}
 	
 	public void execute(InputData inData) {
@@ -22,14 +25,22 @@ public class Chia2SoUseCaseControl implements InputInterface {
 		
 		outData = new OutputData();
 		try {
-			double result = c2so.chia2So(); // 2. sai khiến Entity
+			// 1. Tính chia 2 số
+			double result = c2so.chia2So();
 			outData.result = result;
 			outData.errorMessage = null;
+			
+			// 2. Kiểm tra chẵn lẻ của kết quả (phần nguyên)
+			int resultInt = (int) result;
+			ktcl.setNumber(resultInt);
+			boolean laChan = ktcl.laChanHayle();
+			outData.laChan = laChan;
 		} catch (ArithmeticException e) {
 			outData.result = 0;
 			outData.errorMessage = e.getMessage();
+			outData.laChan = false;
 		}
 		
-		out.present(outData); // 3. sai khiến boundary
+		out.present(outData);
 	}
 }
