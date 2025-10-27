@@ -1,28 +1,30 @@
 package entities.nhan2so;
 
-public class Nhan2So {
-	private int number1;
-	private int number2;
-	
-	 
-	public Nhan2So() {
+import entities.TinhToan2So;
+
+public class Nhan2So extends TinhToan2So {
+
+	public Nhan2So(Integer num1, Integer num2) {
+		super(num1, num2);
 	}
 
-	public Nhan2So(int number1, int number2) {
-		this.number1 = number1;
-		this.number2 = number2;
+	@Override
+	public double tinh2so() {
+		return num1 * num2;
 	}
 
-
-	public int nhan2So() {
-		return  number1 * number2;
+	public static boolean isValid(Integer num1, Integer num2) {
+		if (num1 >= 0 && num1 <= 9 && num2 >= 0 && num2 <= 9) {
+			return true;
+		}
+		return false;
 	}
 
-	public void setNumber1(int number1) {
-		this.number1 = number1;
-	}
-
-	public void setNumber2(int number2) {
-		this.number2 = number2;
+	public static boolean isOdd(Integer result){
+		if (result % 2 != 0){
+			return true;
+		}
+		return false;
 	}
 }
+

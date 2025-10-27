@@ -19,14 +19,12 @@ public class Chia2SoPresenter implements OutputInterface {
 	
 	@Override
 	public void present(OutputData outData) {
-		if (outData.errorMessage != null) {
-			model.result = outData.errorMessage;
-			model.hasError = true;
-			model.laChan = false;
-		} else {
-			model.result = String.valueOf(outData.result);
-			model.hasError = false;
-			model.laChan = outData.laChan;
+		if (outData.errorMessage.length() > 0) {
+			model.errorMessage = outData.errorMessage;
+			model.result = null;
+			return;
 		}
+		model.errorMessage = null;
+		model.result = String.valueOf(outData.result);
 	}
 }

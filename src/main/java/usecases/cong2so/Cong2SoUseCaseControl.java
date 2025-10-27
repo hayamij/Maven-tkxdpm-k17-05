@@ -1,7 +1,6 @@
 package usecases.cong2so;
 
 import entities.cong2so.Cong2So;
-import entities.chanle.KiemTraChanLe;
 
 public class Cong2SoUseCaseControl implements InputInterface {
 	private OutputInterface out;
@@ -17,14 +16,10 @@ public class Cong2SoUseCaseControl implements InputInterface {
 	
 	public void execute(InputData inData) {
 		Cong2So c2so = new Cong2So(inData.num1, inData.num2);
-		int result = c2so.cong2So();
-		
-		KiemTraChanLe ktcl = new KiemTraChanLe(result);
-		boolean laChan = ktcl.laChanHayle();
-		
+		int result = (int) c2so.tinh2so();
+	
 		outData = new OutputData();
 		outData.result = result;
-		outData.laChan = laChan;
 		
 		out.present(outData);
 	}

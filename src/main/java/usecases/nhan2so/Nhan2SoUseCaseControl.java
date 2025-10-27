@@ -1,7 +1,6 @@
 package usecases.nhan2so;
 
 import entities.nhan2so.Nhan2So;
-import entities.chanle.KiemTraChanLe;
 
 public class Nhan2SoUseCaseControl implements InputInterface {
 	private OutputInterface out;
@@ -16,16 +15,28 @@ public class Nhan2SoUseCaseControl implements InputInterface {
 	}
 	
 	public void execute(InputData inData) {
+
 		Nhan2So n2so = new Nhan2So(inData.num1, inData.num2);
-		int result = n2so.nhan2So();
-		
-		KiemTraChanLe ktcl = new KiemTraChanLe(result);
-		boolean laChan = ktcl.laChanHayle();
-		
-		outData = new OutputData();
+		OutputData outData = new OutputData();
+
+		// validate
+		if (!Nhan2So.isValid(inData.num1, inData.num2)) {
+			outData.errorMessage = "Invalid input: num1 and num2 must be between 0 and 9.";
+			out.present(outData);
+			return;
+		}
+
+		int result = (int) n2so.tinh2so();
+
+		if (Nhan2So.isOdd(result)) {
+			outData.isOdd = true;
+		} else {
+			outData.isOdd = false;
+		}
+
+		outData.errorMessage = "";
 		outData.result = result;
-		outData.laChan = laChan;
-		
 		out.present(outData);
+
 	}
 }

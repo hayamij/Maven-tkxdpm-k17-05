@@ -20,6 +20,5 @@ public class Tru2SoPresenter implements OutputInterface {
 	@Override
 	public void present(OutputData outData) {
 		model.result = String.valueOf(outData.result);
-		model.laChan = outData.laChan;
 	}
 }

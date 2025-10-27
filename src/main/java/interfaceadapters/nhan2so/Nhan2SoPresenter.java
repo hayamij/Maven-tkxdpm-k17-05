@@ -19,7 +19,24 @@ public class Nhan2SoPresenter implements OutputInterface {
 	
 	@Override
 	public void present(OutputData outData) {
+
+		Nhan2SoViewModel model = this.getModel();
+
+		if (outData.errorMessage.length() > 0) {
+			model.errorMessage = outData.errorMessage;
+			model.result = null;
+			return;
+		}
+
+		if (model.color == null) {
+			model.color = "black";
+		} else if (outData.isOdd) {
+			model.color = "red";
+		} else {
+			model.color = "blue";
+		}
+		
 		model.result = String.valueOf(outData.result);
-		model.laChan = outData.laChan;
+		
 	}
 }

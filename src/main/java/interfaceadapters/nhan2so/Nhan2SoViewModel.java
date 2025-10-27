@@ -4,13 +4,17 @@ import interfaceadapters.Publisher;
 
 public class Nhan2SoViewModel extends Publisher {
 	public String result;
-	public boolean laChan;
+	public String errorMessage;
+	public String color;
 	
 	public String getResult() {
 		return result;
 	}
 	
-	public boolean isLaChan() {
-		return laChan;
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public String getColor() {
+		return color;
 	}
 }

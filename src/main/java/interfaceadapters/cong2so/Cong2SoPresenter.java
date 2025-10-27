@@ -20,6 +20,5 @@ public class Cong2SoPresenter implements OutputInterface {
 	@Override
 	public void present(OutputData outData) {
 		model.result = String.valueOf(outData.result);
-		model.laChan = outData.laChan;
 	}
 }

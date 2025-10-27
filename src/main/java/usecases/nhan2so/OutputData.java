@@ -2,5 +2,6 @@ package usecases.nhan2so;
 
 public class OutputData {
 	public int result;
-	public boolean laChan;
+	public String errorMessage;
+	public boolean isOdd;
 }

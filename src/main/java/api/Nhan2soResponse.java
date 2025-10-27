@@ -3,7 +3,7 @@ package api;
 public class Nhan2soResponse {
     private boolean success;
     private String message;
-    private Integer result; // nullable for error cases
+    private Integer result; 
 
     public Nhan2soResponse() {}
 
