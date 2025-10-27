@@ -14,6 +14,7 @@ import interfaceadapters.cong2so.Cong2SoController;
 import interfaceadapters.cong2so.Cong2SoPresenter;
 import interfaceadapters.cong2so.Cong2SoViewModel;
 import entities.cong2so.Cong2So;
+import entities.chanle.KiemTraChanLe;
 import usecases.cong2so.Cong2SoUseCaseControl;
 
 public class GUICong2So extends JFrame {
@@ -45,12 +46,13 @@ public class GUICong2So extends JFrame {
 					inDTO.num1 = tf1.getText();
 					inDTO.num2 = tf2.getText();
 					Cong2So c2so = new Cong2So();
+					KiemTraChanLe ktcl = new KiemTraChanLe();
 					Cong2SoViewModel model = new Cong2SoViewModel();
 					//đăng ký view với model
 					view.setModel(model);
 					Cong2SoPresenter presenter = new Cong2SoPresenter(model);
 					Cong2SoUseCaseControl uc = new 
-							Cong2SoUseCaseControl(presenter, c2so);
+							Cong2SoUseCaseControl(presenter, c2so, ktcl);
 					
 					Cong2SoController controller =
 							new Cong2SoController(uc);
