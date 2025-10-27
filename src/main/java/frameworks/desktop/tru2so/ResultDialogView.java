@@ -1,7 +1,6 @@
 package frameworks.desktop.tru2so;
 
 import javax.swing.*;
-import java.awt.*;
 
 import interfaceadapters.tru2so.Tru2SoViewModel;
 import frameworks.desktop.Subscriber;

@@ -1,7 +1,6 @@
 package frameworks.desktop.chia2so;
 
 import javax.swing.*;
-import java.awt.*;
 
 import interfaceadapters.chia2so.Chia2SoViewModel;
 import frameworks.desktop.Subscriber;

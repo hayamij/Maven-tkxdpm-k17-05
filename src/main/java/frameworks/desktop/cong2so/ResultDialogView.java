@@ -1,7 +1,6 @@
 package frameworks.desktop.cong2so;
 
 import javax.swing.*;
-import java.awt.*;
 
 import interfaceadapters.cong2so.Cong2SoViewModel;
 import frameworks.desktop.Subscriber;
