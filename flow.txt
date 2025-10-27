@@ -1,0 +1,15 @@
+GUI/Web
+  ↓
+Controller (chuyển DTO → Data)
+  ↓
+UseCaseControl
+  ├─► Entity 1 (Phép tính chính)
+  └─► Entity 2 (Kiểm tra chẵn/lẻ)
+  ↓
+OutputData { result, laChan }
+  ↓
+Presenter (chuyển Data → ViewModel)
+  ↓
+ViewModel { result, laChan }
+  ↓
+View (CHỈ HIỂN THỊ)
