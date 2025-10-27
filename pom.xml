@@ -32,16 +32,70 @@
 		</dependency>
 
 
-		<!-- JUnit (kiểm thử) -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.10.0</version>
-			<scope>test</scope>
-		</dependency>
-		<!--thẻ khác-->
+	<!-- JUnit (kiểm thử) -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter</artifactId>
+		<version>5.10.0</version>
+		<scope>test</scope>
+	</dependency>
+
+	<!-- Jersey 3.1.1 Core -->
+	<dependency>
+		<groupId>org.glassfish.jersey.core</groupId>
+		<artifactId>jersey-server</artifactId>
+		<version>3.1.1</version>
+	</dependency>
+
+	<!-- Jersey 3.1.1 Container - Servlet -->
+	<dependency>
+		<groupId>org.glassfish.jersey.containers</groupId>
+		<artifactId>jersey-container-servlet</artifactId>
+		<version>3.1.1</version>
+	</dependency>
+
+	<!-- Jersey 3.1.1 Injection -->
+	<dependency>
+		<groupId>org.glassfish.jersey.inject</groupId>
+		<artifactId>jersey-hk2</artifactId>
+		<version>3.1.1</version>
+	</dependency>
+
+	<!-- Jersey 3.1.1 Media - JSON support (tùy chọn) -->
+	<dependency>
+		<groupId>org.glassfish.jersey.media</groupId>
+		<artifactId>jersey-media-json-jackson</artifactId>
+		<version>3.1.1</version>
+	</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>tkxdpm-k17-05</finalName>
+		<plugins>
+			<!-- Cargo Maven Plugin for Tomcat 10 -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven3-plugin</artifactId>
+				<version>1.10.10</version>
+				<configuration>
+					<container>
+						<containerId>tomcat10x</containerId>
+						<type>embedded</type>
+					</container>
+					<configuration>
+						<properties>
+							<cargo.servlet.port>8080</cargo.servlet.port>
+						</properties>
+					</configuration>
+					<deployables>
+						<deployable>
+							<properties>
+								<context>/tkxdpm-k17-05</context>
+							</properties>
+						</deployable>
+					</deployables>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
