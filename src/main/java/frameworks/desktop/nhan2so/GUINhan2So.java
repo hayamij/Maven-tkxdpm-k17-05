@@ -14,6 +14,7 @@ import interfaceadapters.nhan2so.Nhan2SoController;
 import interfaceadapters.nhan2so.Nhan2SoPresenter;
 import interfaceadapters.nhan2so.Nhan2SoViewModel;
 import entities.nhan2so.Nhan2So;
+import entities.chanle.KiemTraChanLe;
 import usecases.nhan2so.Nhan2SoUseCaseControl;
 
 public class GUINhan2So extends JFrame {
@@ -45,12 +46,13 @@ public class GUINhan2So extends JFrame {
 					inDTO.num1 = tf1.getText();
 					inDTO.num2 = tf2.getText();
 					Nhan2So n2so = new Nhan2So();
+					KiemTraChanLe ktcl = new KiemTraChanLe();
 					Nhan2SoViewModel model = new Nhan2SoViewModel();
 					//đăng ký view với model
 					view.setModel(model);
 					Nhan2SoPresenter presenter = new Nhan2SoPresenter(model);
 					Nhan2SoUseCaseControl uc = new 
-							Nhan2SoUseCaseControl(presenter, n2so);
+							Nhan2SoUseCaseControl(presenter, n2so, ktcl);
 					
 					Nhan2SoController controller =
 							new Nhan2SoController(uc);
