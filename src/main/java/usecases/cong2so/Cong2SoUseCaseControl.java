@@ -20,21 +20,17 @@ public class Cong2SoUseCaseControl implements InputInterface {
 	}
 	
 	public void execute(InputData inData) {
-		// 1. Tính cộng 2 số
 		c2so.setNumber1(inData.num1);
 		c2so.setNumber2(inData.num2);
 		int result = c2so.cong2So();
 		
-		// 2. Kiểm tra chẵn lẻ của kết quả
 		ktcl.setNumber(result);
 		boolean laChan = ktcl.laChanHayle();
 		
-		// 3. Tạo OutputData với cả kết quả và thông tin chẵn/lẻ
 		outData = new OutputData();
 		outData.result = result;
 		outData.laChan = laChan;
 		
-		// 4. Gửi cho Presenter
 		out.present(outData);
 	}
 }
