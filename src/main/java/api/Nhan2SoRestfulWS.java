@@ -4,6 +4,7 @@ import entities.chanle.KiemTraChanLe;
 import entities.nhan2so.Nhan2So;
 import interfaceadapters.nhan2so.Nhan2SoPresenterAPI;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -21,6 +22,14 @@ public class Nhan2SoRestfulWS {
 	public static class RequestBody {
 		public Integer num1;
 		public Integer num2;
+	}
+
+	@GET
+	public Response infoGet() {
+		Nhan2soResponse resp = new Nhan2soResponse();
+		resp.setSuccess(false);
+		resp.setMessage("This endpoint accepts POST only. Use POST /api/nhan2so with JSON {\"num1\":<int>,\"num2\":<int>}.");
+		return Response.ok(resp).build();
 	}
 
 	@POST
